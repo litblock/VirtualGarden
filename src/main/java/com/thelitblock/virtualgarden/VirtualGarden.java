@@ -3,6 +3,7 @@ package com.thelitblock.virtualgarden;
 import com.thelitblock.virtualgarden.commands.Command;
 import com.thelitblock.virtualgarden.commands.DisplayCommand;
 import com.thelitblock.virtualgarden.commands.ExitCommand;
+import com.thelitblock.virtualgarden.commands.HelpCommand;
 import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
 import org.jline.reader.impl.completer.StringsCompleter;
@@ -37,9 +38,10 @@ public class VirtualGarden {
             commandRegistry.registerCommand(new RemovePlantCommand(garden, lineReader));
             commandRegistry.registerCommand(new DisplayCommand(garden, lineReader));
             commandRegistry.registerCommand(new ExitCommand());
+            commandRegistry.registerCommand(new HelpCommand(commandRegistry));
 
             while (true) {
-                String input = lineReader.readLine("Enter command (add, remove, display, exit): ");
+                String input = lineReader.readLine("Enter command: (help)");
                 String[] parts = input.split(" ");
                 Command cmd = commandRegistry.getCommand(parts[0]);
                 if (cmd != null) {

@@ -13,4 +13,8 @@ public class CommandRegistry {
     public Command getCommand(String name) {
         return commands.get(name);
     }
+
+    public Map<String, Command> getCommands() {
+        return commands;
+    }
 }

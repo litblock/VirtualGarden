@@ -1,18 +1,17 @@
 package com.thelitblock.virtualgarden;
 
 public class Plant {
-    protected String type;
+    protected PlantType type;
     protected int growthStage;
     protected boolean isHealthy;
 
-    public Plant(String type) {
+    public Plant(PlantType type) {
         this.type = type;
         this.growthStage = 0;
         this.isHealthy = true;
     }
 
     public void water() {
-
     }
 
     public void giveSunlight() {
@@ -24,7 +23,7 @@ public class Plant {
         return type + " - Stage: " + growthStage + ", Healthy: " + isHealthy;
     }
 
-    public String getType() {
+    public PlantType getType() {
         return type;
     }
 }
