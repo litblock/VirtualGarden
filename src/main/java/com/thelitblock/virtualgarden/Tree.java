@@ -5,7 +5,7 @@ public class Tree extends Plant {
     private TreeType treeType;
 
     public Tree(TreeType treeType, int treeHeight) {
-        super(PlantType.TREE);
+        super(PlantType.TREE, 1);
         this.treeHeight = treeHeight;
         this.treeType = treeType;
     }

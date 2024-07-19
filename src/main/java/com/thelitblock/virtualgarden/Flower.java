@@ -5,7 +5,7 @@ public class Flower extends Plant {
     private String flowerColor;
 
     public Flower(FlowerType flowerType, String flowerColor) {
-        super(PlantType.FLOWER);
+        super(PlantType.FLOWER, 1);
         this.flowerType = flowerType;
         this.flowerColor = flowerColor;
     }

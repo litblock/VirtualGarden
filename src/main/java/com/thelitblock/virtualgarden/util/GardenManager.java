@@ -4,15 +4,38 @@ import com.thelitblock.virtualgarden.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 
 public class GardenManager {
     private List<Plant> plants = new ArrayList<>();
     private Garden garden;
     private Currency currency;
+    private ScheduledExecutorService executorService;
 
     public GardenManager(Garden garden, int initialCurrency) {
         this.garden = garden;
         this.currency = new Currency(initialCurrency);
+        this.executorService = Executors.newScheduledThreadPool(1);
+        scheduleGrowthUpdates();
+    }
+
+    private void scheduleGrowthUpdates() {
+        executorService.scheduleAtFixedRate(() -> {
+            for (int row = 0; row < garden.getPlot().getRows(); row++) {
+                for (int col = 0; col < garden.getPlot().getCols(); col++) {
+                    Plant plant = garden.getPlot().getPlantAt(row, col);
+                    if (plant != null) {
+                        plant.updateGrowth(this);
+                    }
+                }
+            }
+        }, 0, 2, TimeUnit.MINUTES);
+    }
+    public void updateIndividualPlantGrowth(Plant plant) {
+        GrowthStage nextStage = getNextGrowthStage(plant.getGrowthStage(), plant.getType());
+        plant.setGrowthStage(nextStage);
     }
 
     public void updateGrowth() {
@@ -20,7 +43,6 @@ public class GardenManager {
             for (int col = 0; col < garden.getPlot().getCols(); col++) {
                 Plant plant = garden.getPlot().getPlantAt(row, col);
                 if (plant != null) {
-                    // Example growth condition: automatically grow to next stage
                     GrowthStage nextStage = getNextGrowthStage(plant.getGrowthStage(), plant.getType());
                     plant.setGrowthStage(nextStage);
                 }
@@ -69,7 +91,7 @@ public class GardenManager {
                     case VEGETATIVE:
                         return GrowthStage.DEAD;
                     default:
-                        return GrowthStage.DEAD; // No further growth after DEAD
+                        return currentStage; // No further growth after DEAD
                 }
             default:
                 return currentStage;

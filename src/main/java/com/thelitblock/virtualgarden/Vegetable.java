@@ -5,7 +5,7 @@ public class Vegetable extends Plant {
     private VegetableType vegetableType;
 
     public Vegetable(String name, VegetableType vegetableType, int harvestTime) {
-        super(PlantType.VEGETABLE);
+        super(PlantType.VEGETABLE, 1);
         this.vegetableType = vegetableType;
         this.harvestTime = harvestTime;
     }

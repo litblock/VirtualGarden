@@ -14,4 +14,13 @@ public enum PlantType {
     public int getCost() {
         return cost;
     }
+
+    public int getMaxGrowthStage() {
+        switch (this) {
+            case FLOWER: return 4;
+            case TREE: return 5;
+            case VEGETABLE: return 4;
+            default: return 0;
+        }
+    }
 }

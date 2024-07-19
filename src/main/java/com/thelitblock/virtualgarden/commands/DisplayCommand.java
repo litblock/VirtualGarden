@@ -1,8 +1,6 @@
 package com.thelitblock.virtualgarden.commands;
 
-import com.thelitblock.virtualgarden.Garden;
-import com.thelitblock.virtualgarden.Plant;
-import com.thelitblock.virtualgarden.PlantType;
+import com.thelitblock.virtualgarden.*;
 import org.jline.reader.LineReader;
 
 public class DisplayCommand implements Command {
@@ -21,7 +19,7 @@ public class DisplayCommand implements Command {
 
     @Override
     public String getDescription() {
-        return "Displays the garden with detailed plant information";
+        return "Displays the garden with detailed plant information including time left for growth";
     }
 
     @Override
@@ -39,7 +37,8 @@ public class DisplayCommand implements Command {
                 Plant plant = garden.getPlot().getPlantAt(row, col);
                 if (plant != null) {
                     String symbol = getSymbolForPlantType(plant.getType());
-                    System.out.print(symbol + plant.getGrowthStage().toString().charAt(0) + " "); // Append growth stage initial
+                    int growthTimeLeft = calculateGrowthTimeLeft(plant);
+                    System.out.print(symbol + plant.getGrowthStage().toString().charAt(0) + "(" + growthTimeLeft + ") "); // Append growth stage initial and time left
                 } else {
                     System.out.print(".  ");
                 }
@@ -58,11 +57,26 @@ public class DisplayCommand implements Command {
         }
     }
 
+    private int calculateGrowthTimeLeft(Plant plant) {
+        final int updateFrequencyInMinutes = 15; // Assuming updates occur every 15 minutes
+        int currentGrowthStage = plant.getGrowthStage().ordinal();
+        int maxGrowthStage = plant.getMaxGrowthStage(); // Assuming this method exists and returns the max growth stage for a plant
+        int stagesLeft = maxGrowthStage - currentGrowthStage;
+
+        // Calculate total time left in minutes
+        int totalTimeLeftInMinutes = stagesLeft * updateFrequencyInMinutes;
+
+        // Optionally, convert minutes to a more readable format (e.g., days) if needed
+        // Here, simply returning the time left in minutes
+        return totalTimeLeftInMinutes;
+    }
+
     private void printLegend() {
         System.out.println("\nLegend:");
         System.out.println("F - Flower");
         System.out.println("T - Tree");
         System.out.println("V - Vegetable");
         System.out.println(". - Empty Plot");
+        System.out.println("Number in parentheses indicates days left for growth");
     }
 }
