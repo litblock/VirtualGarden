@@ -35,4 +35,12 @@ public class Plot {
             System.out.println();
         }
     }
+
+    public boolean isPlantAt(int row, int col, Plant plant) {
+        if (row >= 0 && row < this.rows && col >= 0 && col < this.cols) {
+            Plant existingPlant = this.plotGrid[row][col];
+            return existingPlant != null && existingPlant.equals(plant);
+        }
+        return false;
+    }
 }

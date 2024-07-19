@@ -17,14 +17,18 @@ public class Garden {
         plot.addPlant(row, col, plant);
     }
 
-    public void removePlant(String plantType, int row, int col) {
-        plants.removeIf(plant -> {
-            boolean isMatch = Objects.equals(plant.getType(), plantType);
-            if (isMatch) {
+    public boolean removePlant(String plantType, int row, int col) {
+        boolean removed = false;
+        for (int i = 0; i < plants.size(); i++) {
+            Plant plant = plants.get(i);
+            if (Objects.equals(plant.getType(), plantType) && plot.isPlantAt(row, col, plant)) {
+                plants.remove(plant);
                 plot.removePlant(row, col);
+                removed = true;
+                break;
             }
-            return isMatch;
-        });
+        }
+        return removed;
     }
 
     public void displayGarden() {
