@@ -8,9 +8,11 @@ import java.util.List;
 public class GardenManager {
     private List<Plant> plants = new ArrayList<>();
     private Garden garden;
+    private Currency currency;
 
-    public GardenManager(Garden garden) {
+    public GardenManager(Garden garden, int initialCurrency) {
         this.garden = garden;
+        this.currency = new Currency(initialCurrency);
     }
 
     public void addPlantWithSubType(String subTypeInput, int row, int col) {
@@ -70,5 +72,21 @@ public class GardenManager {
             return false;
         }
         return true;
+    }
+
+    public boolean canAfford(int amount) {
+        return currency.getBalance() >= amount;
+    }
+
+    public void spendCurrency(int amount) {
+        currency.subtract(amount);
+    }
+
+    public void earnCurrency(int amount) {
+        currency.add(amount);
+    }
+
+    public int getCurrencyBalance() {
+        return currency.getBalance();
     }
 }

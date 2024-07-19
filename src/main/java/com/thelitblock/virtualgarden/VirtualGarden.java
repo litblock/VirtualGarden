@@ -32,7 +32,8 @@ public class VirtualGarden {
                     .build();
 
             Garden garden = new Garden(2, 2);
-            GardenManager gardenManager = new GardenManager(garden);
+            int initialCurrency = 100;
+            GardenManager gardenManager = new GardenManager(garden, initialCurrency);
 
             System.out.println("Welcome to Virtual Garden!");
             CommandRegistry commandRegistry = new CommandRegistry();
