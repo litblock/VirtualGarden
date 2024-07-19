@@ -17,4 +17,8 @@ public class Flower extends Plant {
     public String getFlowerColor() {
         return flowerColor;
     }
+
+    public String getName() {
+        return flowerType.toString();
+    }
 }

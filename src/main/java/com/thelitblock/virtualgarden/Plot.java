@@ -28,7 +28,8 @@ public class Plot {
             for (int j = 0; j < cols; j++) {
                 if (plotGrid[i][j] == null) {
                     System.out.print("- ");
-                } else {
+                }
+                else {
                     System.out.print(plotGrid[i][j].getType().toString().substring(0, 1).toUpperCase() + " ");
                 }
             }
@@ -40,6 +41,13 @@ public class Plot {
         if (row >= 0 && row < this.rows && col >= 0 && col < this.cols) {
             Plant existingPlant = this.plotGrid[row][col];
             return existingPlant != null && existingPlant.equals(plant);
+        }
+        return false;
+    }
+
+    public boolean isPlantAt(int row, int col) {
+        if (row >= 0 && row < this.plotGrid.length && col >= 0 && col < this.plotGrid[row].length) {
+            return this.plotGrid[row][col] != null;
         }
         return false;
     }

@@ -17,4 +17,8 @@ public class Tree extends Plant {
     public TreeType getTreeType() {
         return treeType;
     }
+
+    public String getName() {
+        return treeType.toString();
+    }
 }

@@ -2,11 +2,11 @@ package com.thelitblock.virtualgarden;
 
 public class Vegetable extends Plant {
     private int harvestTime; // Days until harvest
-    private VegetableType type;
+    private VegetableType vegetableType;
 
-    public Vegetable(String name, VegetableType type, int harvestTime) {
+    public Vegetable(String name, VegetableType vegetableType, int harvestTime) {
         super(PlantType.VEGETABLE);
-        this.type = type;
+        this.vegetableType = vegetableType;
         this.harvestTime = harvestTime;
     }
 
@@ -15,6 +15,10 @@ public class Vegetable extends Plant {
     }
 
     public VegetableType getVegetableType() {
-        return type;
+        return vegetableType;
+    }
+
+    public String getName() {
+        return type.toString();
     }
 }

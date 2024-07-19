@@ -32,7 +32,7 @@ public class VirtualGarden {
                     .build();
 
             Garden garden = new Garden(2, 2);
-            GardenManager gardenManager = new GardenManager();
+            GardenManager gardenManager = new GardenManager(garden);
 
             System.out.println("Welcome to Virtual Garden!");
             CommandRegistry commandRegistry = new CommandRegistry();

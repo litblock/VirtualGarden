@@ -21,7 +21,7 @@ public class Garden {
         boolean removed = false;
         for (int i = 0; i < plants.size(); i++) {
             Plant plant = plants.get(i);
-            if (Objects.equals(plant.getType(), plantType) && plot.isPlantAt(row, col, plant)) {
+            if (Objects.equals(plant.getType(), plantType) && plot.isPlantAt(row, col)) {
                 plants.remove(plant);
                 plot.removePlant(row, col);
                 removed = true;

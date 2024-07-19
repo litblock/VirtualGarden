@@ -7,12 +7,12 @@ import org.jline.reader.LineReader;
 public class PlantSeedCommand implements Command {
     private Garden garden;
     private LineReader lineReader;
-    private GardenManager gardenManager; // Add this line
+    private GardenManager gardenManager;
 
-    public PlantSeedCommand(Garden garden, LineReader lineReader, GardenManager gardenManager) { // Update constructor
+    public PlantSeedCommand(Garden garden, LineReader lineReader, GardenManager gardenManager) {
         this.garden = garden;
         this.lineReader = lineReader;
-        this.gardenManager = gardenManager; // Initialize gardenManager
+        this.gardenManager = gardenManager;
     }
 
     @Override
@@ -27,27 +27,43 @@ public class PlantSeedCommand implements Command {
 
     @Override
     public void execute(String[] args) {
-        String typeName;
-        int row, col;
-
-        if (args.length < 3) {
-            typeName = lineReader.readLine("Enter plant type: ");
-            row = Integer.parseInt(lineReader.readLine("Enter row: "));
-            col = Integer.parseInt(lineReader.readLine("Enter column: "));
-        }
-        else {
-            typeName = args[0];
-            row = Integer.parseInt(args[1]);
-            col = Integer.parseInt(args[2]);
-        }
-
+        String plantTypeInput = lineReader.readLine("Enter plant type (Flower, Tree, Vegetable): ");
+        PlantType plantType;
         try {
-            PlantType type = PlantType.valueOf(typeName.toUpperCase());
-            gardenManager.addPlant(type, typeName, 0); // Assuming harvestTime is not relevant here
-            System.out.println("Planted seed of type " + typeName + " at position " + row + "," + col);
+            plantType = PlantType.valueOf(plantTypeInput.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            System.out.println("Error: Plant type " + plantTypeInput + " is not recognized.");
+            return;
         }
-        catch (IllegalArgumentException e) {
-            System.out.println("Error: Plant type " + typeName + " is not recognized.");
+
+        switch (plantType) {
+            case FLOWER:
+                System.out.println("Enter flower type (Rose, Tulip, Daisy, Sunflower, Lily): ");
+                break;
+            case TREE:
+                System.out.println("Enter tree type (Oak, Pine, Maple, Birch, Cherry): ");
+                break;
+            case VEGETABLE:
+                System.out.println("Enter vegetable type (Carrot, Potato, Tomato, Lettuce, Cucumber): ");
+                break;
         }
+
+        String subTypeInput = lineReader.readLine();
+        if (!gardenManager.isValidSubType(subTypeInput, plantType)) {
+            System.out.println("Error: " + plantType.name() + " type " + subTypeInput + " is not recognized.");
+            return;
+        }
+
+        int row = Integer.parseInt(lineReader.readLine("Enter row: "));
+        int col = Integer.parseInt(lineReader.readLine("Enter column: "));
+
+        if (garden.getPlot().isPlantAt(row, col)) {
+            System.out.println("Error: Tile at position " + row + "," + col + " is already occupied by another plant.");
+            return;
+        }
+
+        String combinedType = plantType.name() + ":" + subTypeInput.toUpperCase();
+        gardenManager.addPlantWithSubType(combinedType, row, col);
+        System.out.println("Planted " + subTypeInput + " of type " + plantTypeInput + " at position " + row + "," + col);
     }
 }
