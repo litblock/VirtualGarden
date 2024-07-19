@@ -59,4 +59,11 @@ public class Plot {
     public int getCols() {
         return cols;
     }
+
+    public Plant getPlantAt(int row, int col) {
+        if (row >= 0 && row < rows && col >= 0 && col < cols) {
+            return plotGrid[row][col];
+        }
+        return null;
+    }
 }

@@ -2,13 +2,21 @@ package com.thelitblock.virtualgarden;
 
 public class Plant {
     protected PlantType type;
-    protected int growthStage;
+    private GrowthStage growthStage;
     protected boolean isHealthy;
 
     public Plant(PlantType type) {
         this.type = type;
-        this.growthStage = 0;
+        this.growthStage = GrowthStage.SEED;
         this.isHealthy = true;
+    }
+
+    public GrowthStage getGrowthStage() {
+        return growthStage;
+    }
+
+    public void setGrowthStage(GrowthStage growthStage) {
+        this.growthStage = growthStage;
     }
 
     public void water() {

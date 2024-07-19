@@ -15,6 +15,67 @@ public class GardenManager {
         this.currency = new Currency(initialCurrency);
     }
 
+    public void updateGrowth() {
+        for (int row = 0; row < garden.getPlot().getRows(); row++) {
+            for (int col = 0; col < garden.getPlot().getCols(); col++) {
+                Plant plant = garden.getPlot().getPlantAt(row, col);
+                if (plant != null) {
+                    // Example growth condition: automatically grow to next stage
+                    GrowthStage nextStage = getNextGrowthStage(plant.getGrowthStage(), plant.getType());
+                    plant.setGrowthStage(nextStage);
+                }
+            }
+        }
+    }
+
+    private GrowthStage getNextGrowthStage(GrowthStage currentStage, PlantType plantType) {
+        switch (plantType) {
+            case FLOWER:
+                switch (currentStage) {
+                    case SEED:
+                        return GrowthStage.SPROUT;
+                    case SPROUT:
+                        return GrowthStage.MATURE;
+                    case MATURE:
+                        return GrowthStage.FLOWERING;
+                    case FLOWERING:
+                        return GrowthStage.DEAD;
+                    default:
+                        return currentStage;
+                }
+            case TREE:
+                switch (currentStage) {
+                    case SEED:
+                        return GrowthStage.SAPLING;
+                    case SAPLING:
+                        return GrowthStage.MATURE;
+                    case MATURE:
+                        return GrowthStage.FRUITING;
+                    case FRUITING:
+                        return GrowthStage.HARVESTED;
+                    case HARVESTED:
+                        return GrowthStage.MATURE; // Regrow after harvest
+                    default:
+                        return currentStage;
+                }
+            case VEGETABLE:
+                switch (currentStage) {
+                    case SEED:
+                        return GrowthStage.SPROUT;
+                    case SPROUT:
+                        return GrowthStage.MATURE;
+                    case MATURE:
+                        return GrowthStage.VEGETATIVE;
+                    case VEGETATIVE:
+                        return GrowthStage.DEAD;
+                    default:
+                        return GrowthStage.DEAD; // No further growth after DEAD
+                }
+            default:
+                return currentStage;
+        }
+    }
+
     public void addPlantWithSubType(String subTypeInput, int row, int col) {
         Plant plant = null;
         String[] parts = subTypeInput.split(":");
