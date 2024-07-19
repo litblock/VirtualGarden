@@ -1,9 +1,6 @@
 package com.thelitblock.virtualgarden;
 
-import com.thelitblock.virtualgarden.commands.Command;
-import com.thelitblock.virtualgarden.commands.DisplayCommand;
-import com.thelitblock.virtualgarden.commands.ExitCommand;
-import com.thelitblock.virtualgarden.commands.HelpCommand;
+import com.thelitblock.virtualgarden.commands.*;
 import com.thelitblock.virtualgarden.util.GardenManager;
 import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
@@ -12,10 +9,6 @@ import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.thelitblock.virtualgarden.commands.CommandRegistry;
-import com.thelitblock.virtualgarden.commands.PlantSeedCommand;
-import com.thelitblock.virtualgarden.commands.RemovePlantCommand;
 
 import java.util.Arrays;
 
@@ -42,6 +35,7 @@ public class VirtualGarden {
             commandRegistry.registerCommand(new DisplayCommand(garden, lineReader));
             commandRegistry.registerCommand(new ExitCommand());
             commandRegistry.registerCommand(new HelpCommand(commandRegistry));
+            commandRegistry.registerCommand(new InventoryCommand(gardenManager));
 
             while (true) {
                 String input = lineReader.readLine("Enter command (help): ");

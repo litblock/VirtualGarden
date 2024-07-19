@@ -51,4 +51,12 @@ public class Plot {
         }
         return false;
     }
+
+    public int getRows() {
+        return rows;
+    }
+
+    public int getCols() {
+        return cols;
+    }
 }
