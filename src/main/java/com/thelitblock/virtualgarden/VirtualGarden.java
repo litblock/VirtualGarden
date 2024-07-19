@@ -4,6 +4,7 @@ import com.thelitblock.virtualgarden.commands.Command;
 import com.thelitblock.virtualgarden.commands.DisplayCommand;
 import com.thelitblock.virtualgarden.commands.ExitCommand;
 import com.thelitblock.virtualgarden.commands.HelpCommand;
+import com.thelitblock.virtualgarden.util.GardenManager;
 import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
 import org.jline.reader.impl.completer.StringsCompleter;
@@ -13,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.thelitblock.virtualgarden.commands.CommandRegistry;
-import com.thelitblock.virtualgarden.commands.AddPlantCommand;
+import com.thelitblock.virtualgarden.commands.PlantSeedCommand;
 import com.thelitblock.virtualgarden.commands.RemovePlantCommand;
 
 import java.util.Arrays;
@@ -27,21 +28,22 @@ public class VirtualGarden {
             Terminal terminal = TerminalBuilder.terminal();
             LineReader lineReader = LineReaderBuilder.builder()
                     .terminal(terminal)
-                    .completer(new StringsCompleter("add", "remove", "display", "exit"))
+                    .completer(new StringsCompleter("plant", "remove", "display", "exit"))
                     .build();
 
             Garden garden = new Garden(2, 2);
+            GardenManager gardenManager = new GardenManager();
 
             System.out.println("Welcome to Virtual Garden!");
             CommandRegistry commandRegistry = new CommandRegistry();
-            commandRegistry.registerCommand(new AddPlantCommand(garden, lineReader));
+            commandRegistry.registerCommand(new PlantSeedCommand(garden, lineReader, gardenManager));
             commandRegistry.registerCommand(new RemovePlantCommand(garden, lineReader));
             commandRegistry.registerCommand(new DisplayCommand(garden, lineReader));
             commandRegistry.registerCommand(new ExitCommand());
             commandRegistry.registerCommand(new HelpCommand(commandRegistry));
 
             while (true) {
-                String input = lineReader.readLine("Enter command: (help)");
+                String input = lineReader.readLine("Enter command (help): ");
                 String[] parts = input.split(" ");
                 Command cmd = commandRegistry.getCommand(parts[0]);
                 if (cmd != null) {

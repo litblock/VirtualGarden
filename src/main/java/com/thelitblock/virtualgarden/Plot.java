@@ -29,7 +29,7 @@ public class Plot {
                 if (plotGrid[i][j] == null) {
                     System.out.print("- ");
                 } else {
-                    System.out.print(plotGrid[i][j].getType().substring(0, 1).toUpperCase() + " ");
+                    System.out.print(plotGrid[i][j].getType().toString().substring(0, 1).toUpperCase() + " ");
                 }
             }
             System.out.println();
