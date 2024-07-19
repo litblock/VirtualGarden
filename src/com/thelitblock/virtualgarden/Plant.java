@@ -1,9 +1,9 @@
 package com.thelitblock.virtualgarden;
 
 public class Plant {
-    private String type; //implement ltr
-    private int growthStage; //implement ltr
-    private boolean isHealthy; //implment ltr
+    protected String type;
+    protected int growthStage;
+    protected boolean isHealthy;
 
     public Plant(String type) {
         this.type = type;
@@ -24,7 +24,7 @@ public class Plant {
         return type + " - Stage: " + growthStage + ", Healthy: " + isHealthy;
     }
 
-    public Object getType() {
+    public String getType() {
         return type;
     }
 }
