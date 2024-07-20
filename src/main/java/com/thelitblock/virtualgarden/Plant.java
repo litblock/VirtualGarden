@@ -1,6 +1,7 @@
 package com.thelitblock.virtualgarden;
 
 import com.thelitblock.virtualgarden.util.AdjustableScheduler;
+import com.thelitblock.virtualgarden.util.AlertManager;
 import com.thelitblock.virtualgarden.util.GardenManager;
 
 import java.util.concurrent.TimeUnit;
@@ -11,8 +12,11 @@ public class Plant {
     protected boolean isHealthy;
     private int growthFactor;
     private AdjustableScheduler scheduler;
+    private AlertManager alertManager;
 
-    public Plant(PlantType type, int growthFactor) {
+
+    public Plant(PlantType type, int growthFactor, AlertManager alertManager) {
+        this.alertManager = alertManager;
         this.type = type;
         this.growthStage = GrowthStage.SEED;
         this.isHealthy = true;
@@ -33,7 +37,11 @@ public class Plant {
             GrowthStage previousStage = this.growthStage;
             growthStage = GardenManager.getNextGrowthStage(growthStage, type);
             if (previousStage != growthStage) {
+                //use alert manager to display the growth stage
                 System.out.println("Alert: Plant " + type + " has grown from " + previousStage + " to " + growthStage);
+                if (growthStage != GrowthStage.DEAD) {
+                    scheduleGrowthUpdate();
+                }
             }
         }
     }

@@ -1,11 +1,13 @@
 package com.thelitblock.virtualgarden;
 
+import com.thelitblock.virtualgarden.util.AlertManager;
+
 public class Tree extends Plant {
     private int treeHeight; // Height in meters
     private TreeType treeType;
 
-    public Tree(TreeType treeType, int treeHeight) {
-        super(PlantType.TREE, 1);
+    public Tree(TreeType treeType, int treeHeight, AlertManager alertManager) {
+        super(PlantType.TREE, 1, alertManager);
         this.treeHeight = treeHeight;
         this.treeType = treeType;
     }

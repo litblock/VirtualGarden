@@ -1,11 +1,13 @@
 package com.thelitblock.virtualgarden;
 
+import com.thelitblock.virtualgarden.util.AlertManager;
+
 public class Flower extends Plant {
     private FlowerType flowerType;
     private String flowerColor;
 
-    public Flower(FlowerType flowerType, String flowerColor) {
-        super(PlantType.FLOWER, 1);
+    public Flower(FlowerType flowerType, String flowerColor, AlertManager alertManager) {
+        super(PlantType.FLOWER, 1, alertManager);
         this.flowerType = flowerType;
         this.flowerColor = flowerColor;
     }

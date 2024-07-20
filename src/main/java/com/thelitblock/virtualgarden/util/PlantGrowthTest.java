@@ -10,7 +10,8 @@ public class PlantGrowthTest {
 
     @Test
     public void testPlantGrowsAfterUpdate() {
-        Plant plant = new Plant(PlantType.FLOWER, 1);
+        AlertManager alertManager = new AlertManager(); // Assuming you have an AlertManager instance
+        Plant plant = new Plant(PlantType.FLOWER, 1, alertManager);
 
         assertEquals(GrowthStage.SEED, plant.getGrowthStage());
 

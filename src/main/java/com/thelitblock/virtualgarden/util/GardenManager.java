@@ -12,6 +12,7 @@ public class GardenManager {
     private List<Plant> plants = new ArrayList<>();
     private Garden garden;
     private Currency currency;
+    private AlertManager alertManager = new AlertManager();
 
     public GardenManager(Garden garden, int initialCurrency) {
         this.garden = garden;
@@ -81,15 +82,16 @@ public class GardenManager {
             switch (plantType) {
                 case FLOWER:
                     FlowerType flowerType = FlowerType.valueOf(subTypeStr);
-                    plant = new Flower(flowerType, "Flower Name");
+                    //implement flower color
+                    plant = new Flower(flowerType, "Flower Color", alertManager);
                     break;
                 case TREE:
                     TreeType treeType = TreeType.valueOf(subTypeStr);
-                    plant = new Tree(treeType, 5);
+                    plant = new Tree(treeType, 5, alertManager);
                     break;
                 case VEGETABLE:
                     VegetableType vegetableType = VegetableType.valueOf(subTypeStr);
-                    plant = new Vegetable("Vegetable Name", vegetableType, 0);
+                    plant = new Vegetable("Vegetable Name", vegetableType, 0, alertManager);
                     break;
             }
         } catch (IllegalArgumentException e) {
@@ -139,5 +141,9 @@ public class GardenManager {
 
     public int getCurrencyBalance() {
         return currency.getBalance();
+    }
+
+    public AlertManager getAlertManager() {
+        return alertManager;
     }
 }

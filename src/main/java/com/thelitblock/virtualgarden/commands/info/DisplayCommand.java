@@ -1,6 +1,7 @@
-package com.thelitblock.virtualgarden.commands;
+package com.thelitblock.virtualgarden.commands.info;
 
 import com.thelitblock.virtualgarden.*;
+import com.thelitblock.virtualgarden.commands.Command;
 import org.jline.reader.LineReader;
 
 public class DisplayCommand implements Command {
@@ -24,6 +25,18 @@ public class DisplayCommand implements Command {
 
     @Override
     public void execute(String[] args) {
+        String input;
+        do {
+            displayPlot(); // Call displayPlot to show the garden layout
+
+            System.out.println("\nEnter 'exit' to return or 'refresh' to display again.");
+            input = lineReader.readLine("> ").trim();
+
+        }
+        while (!input.equalsIgnoreCase("exit"));
+    }
+
+    private void displayPlot() {
         System.out.println("Garden Layout:");
         System.out.print("    ");
         for (int col = 0; col < garden.getPlot().getCols(); col++) {

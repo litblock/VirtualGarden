@@ -1,11 +1,13 @@
 package com.thelitblock.virtualgarden;
 
+import com.thelitblock.virtualgarden.util.AlertManager;
+
 public class Vegetable extends Plant {
     private int harvestTime; // Days until harvest
     private VegetableType vegetableType;
 
-    public Vegetable(String name, VegetableType vegetableType, int harvestTime) {
-        super(PlantType.VEGETABLE, 1);
+    public Vegetable(String name, VegetableType vegetableType, int harvestTime, AlertManager alertManager) {
+        super(PlantType.VEGETABLE, 1, alertManager);
         this.vegetableType = vegetableType;
         this.harvestTime = harvestTime;
     }

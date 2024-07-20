@@ -1,5 +1,6 @@
-package com.thelitblock.virtualgarden.commands;
+package com.thelitblock.virtualgarden.commands.info;
 
+import com.thelitblock.virtualgarden.commands.Command;
 import com.thelitblock.virtualgarden.util.GardenManager;
 
 public class InventoryCommand implements Command {
