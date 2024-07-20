@@ -37,8 +37,7 @@ public class DisplayCommand implements Command {
                 Plant plant = garden.getPlot().getPlantAt(row, col);
                 if (plant != null) {
                     String symbol = getSymbolForPlantType(plant.getType());
-                    int growthTimeLeft = calculateGrowthTimeLeft(plant);
-                    System.out.print(symbol + plant.getGrowthStage().toString().charAt(0) + "(" + growthTimeLeft + ") "); // Append growth stage initial and time left
+                    System.out.print(symbol + "(" + plant.getGrowthStage().toString().charAt(0) + ")");
                 } else {
                     System.out.print(".  ");
                 }
@@ -55,20 +54,6 @@ public class DisplayCommand implements Command {
             case VEGETABLE: return "V";
             default: return "?";
         }
-    }
-
-    private int calculateGrowthTimeLeft(Plant plant) {
-        final int updateFrequencyInMinutes = 15; // Assuming updates occur every 15 minutes
-        int currentGrowthStage = plant.getGrowthStage().ordinal();
-        int maxGrowthStage = plant.getMaxGrowthStage(); // Assuming this method exists and returns the max growth stage for a plant
-        int stagesLeft = maxGrowthStage - currentGrowthStage;
-
-        // Calculate total time left in minutes
-        int totalTimeLeftInMinutes = stagesLeft * updateFrequencyInMinutes;
-
-        // Optionally, convert minutes to a more readable format (e.g., days) if needed
-        // Here, simply returning the time left in minutes
-        return totalTimeLeftInMinutes;
     }
 
     private void printLegend() {

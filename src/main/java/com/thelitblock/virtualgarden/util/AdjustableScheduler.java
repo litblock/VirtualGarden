@@ -24,7 +24,7 @@ public class AdjustableScheduler {
         scheduledFuture = executorService.schedule(task, originalDelayInMinutes, TimeUnit.MINUTES);
     }
 
-    public void adjustSchedule() {
+    public void adjustSchedule(long newDelayInMinutes) {
         if (scheduledFuture != null && !scheduledFuture.isDone()) {
             scheduledFuture.cancel(false); // Cancel the current task
             long timePassed = TimeUnit.MILLISECONDS.toMinutes(System.currentTimeMillis() - taskStartTime);
@@ -43,5 +43,11 @@ public class AdjustableScheduler {
         long currentTimeMillis = System.currentTimeMillis();
         long timeLeft = scheduledExecutionTimeMillis - currentTimeMillis;
         return Math.max(timeLeft, 0);
+    }
+
+    public void cancel() {
+        if (scheduledFuture != null) {
+            scheduledFuture.cancel(false);
+        }
     }
 }

@@ -12,45 +12,13 @@ public class GardenManager {
     private List<Plant> plants = new ArrayList<>();
     private Garden garden;
     private Currency currency;
-    private ScheduledExecutorService executorService;
 
     public GardenManager(Garden garden, int initialCurrency) {
         this.garden = garden;
         this.currency = new Currency(initialCurrency);
-        this.executorService = Executors.newScheduledThreadPool(1);
-        scheduleGrowthUpdates();
     }
 
-    private void scheduleGrowthUpdates() {
-        executorService.scheduleAtFixedRate(() -> {
-            for (int row = 0; row < garden.getPlot().getRows(); row++) {
-                for (int col = 0; col < garden.getPlot().getCols(); col++) {
-                    Plant plant = garden.getPlot().getPlantAt(row, col);
-                    if (plant != null) {
-                        plant.updateGrowth(this);
-                    }
-                }
-            }
-        }, 0, 1, TimeUnit.MINUTES);
-    }
-    public void updateIndividualPlantGrowth(Plant plant) {
-        GrowthStage nextStage = getNextGrowthStage(plant.getGrowthStage(), plant.getType());
-        plant.setGrowthStage(nextStage);
-    }
-
-    public void updateGrowth() {
-        for (int row = 0; row < garden.getPlot().getRows(); row++) {
-            for (int col = 0; col < garden.getPlot().getCols(); col++) {
-                Plant plant = garden.getPlot().getPlantAt(row, col);
-                if (plant != null) {
-                    GrowthStage nextStage = getNextGrowthStage(plant.getGrowthStage(), plant.getType());
-                    plant.setGrowthStage(nextStage);
-                }
-            }
-        }
-    }
-
-    private GrowthStage getNextGrowthStage(GrowthStage currentStage, PlantType plantType) {
+    public static GrowthStage getNextGrowthStage(GrowthStage currentStage, PlantType plantType) {
         switch (plantType) {
             case FLOWER:
                 switch (currentStage) {
