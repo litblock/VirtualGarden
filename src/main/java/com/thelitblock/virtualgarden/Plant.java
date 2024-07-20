@@ -37,8 +37,7 @@ public class Plant {
             GrowthStage previousStage = this.growthStage;
             growthStage = GardenManager.getNextGrowthStage(growthStage, type);
             if (previousStage != growthStage) {
-                //use alert manager to display the growth stage
-                System.out.println("Alert: Plant " + type + " has grown from " + previousStage + " to " + growthStage);
+                alertManager.addAlert("Alert: Plant " + type + " has grown from " + previousStage + " to " + growthStage);
                 if (growthStage != GrowthStage.DEAD) {
                     scheduleGrowthUpdate();
                 }
