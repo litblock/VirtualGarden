@@ -31,7 +31,7 @@ public class GardenManager {
                     }
                 }
             }
-        }, 0, 2, TimeUnit.MINUTES);
+        }, 0, 1, TimeUnit.MINUTES);
     }
     public void updateIndividualPlantGrowth(Plant plant) {
         GrowthStage nextStage = getNextGrowthStage(plant.getGrowthStage(), plant.getType());
