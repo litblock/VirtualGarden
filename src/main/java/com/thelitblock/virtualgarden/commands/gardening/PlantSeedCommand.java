@@ -50,7 +50,7 @@ public class PlantSeedCommand implements Command {
                 cost += TreeType.valueOf(subTypeInput.toUpperCase()).getCost();
                 break;
             case VEGETABLE:
-                subTypeInput = lineReader.readLine("Enter vegetable type (Carrot, Potato, Tomato, Lettuce, Cucumber): ");
+                subTypeInput = lineReader.readLine("Enter vegetable type (Carrot, Pepper, Tomato, Lettuce, Cucumber): ");
                 cost += VegetableType.valueOf(subTypeInput.toUpperCase()).getCost();
                 break;
         }

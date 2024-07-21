@@ -3,11 +3,12 @@ package com.thelitblock.virtualgarden.commands.gardening;
 import com.thelitblock.virtualgarden.Garden;
 import com.thelitblock.virtualgarden.Plant;
 import com.thelitblock.virtualgarden.Vegetable;
+import com.thelitblock.virtualgarden.commands.Command;
 import com.thelitblock.virtualgarden.items.HarvestableItem;
 import com.thelitblock.virtualgarden.util.GardenManager;
 import org.jline.reader.LineReader;
 
-public class HarvestCommand {
+public class HarvestCommand implements Command {
     private Garden garden;
     private LineReader lineReader;
     private GardenManager gardenManager;

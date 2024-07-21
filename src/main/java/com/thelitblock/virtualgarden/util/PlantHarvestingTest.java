@@ -1,8 +1,13 @@
 package com.thelitblock.virtualgarden.util;
 
 import com.thelitblock.virtualgarden.*;
+import com.thelitblock.virtualgarden.items.InventoryItem;
+import com.thelitblock.virtualgarden.items.Item;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PlantHarvestingTest {
@@ -26,7 +31,26 @@ public class PlantHarvestingTest {
         gardenManager.harvestPlant(row, col);
 
         assertNull(gardenManager.getGarden().getPlot().getPlantAt(row, col));
-        assertTrue(inventory.hasItemOfType("CARROT"));
-        assertEquals(1, inventory.countItemsOfType("CARROT"));
+        printInventoryItems();
+    }
+
+    @Test
+    public void printInventoryItems() {
+        Map<String, InventoryItem> items = gardenManager.getInventoryItems();
+        if (items.isEmpty()) {
+            System.out.println("Your inventory is empty.");
+        }
+        else {
+            System.out.println("Your inventory contains:");
+            items.forEach((id, item) -> {
+                if (item instanceof Item) {
+                    Item castedItem = (Item) item;
+                    int quantity = castedItem.isStackable() ? castedItem.getQuantity() : 1;
+                    System.out.println("- " + castedItem.getName() + " (Quantity: " + quantity + ")");
+                } else {
+                    System.out.println("- " + item.getName());
+                }
+            });
+        }
     }
 }

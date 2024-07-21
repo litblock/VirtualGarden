@@ -11,6 +11,10 @@ public class AlertManager {
     }
 
     public List<Alert> getAlerts() {
-        return new ArrayList<>(alerts); // Return a copy to prevent modification
+        return new ArrayList<>(alerts);
+    }
+
+    public boolean hasAlerts() {
+        return !alerts.isEmpty();
     }
 }

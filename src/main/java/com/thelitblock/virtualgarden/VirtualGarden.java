@@ -1,6 +1,7 @@
 package com.thelitblock.virtualgarden;
 
 import com.thelitblock.virtualgarden.commands.*;
+import com.thelitblock.virtualgarden.commands.gardening.HarvestCommand;
 import com.thelitblock.virtualgarden.commands.gardening.PlantSeedCommand;
 import com.thelitblock.virtualgarden.commands.gardening.RemovePlantCommand;
 import com.thelitblock.virtualgarden.commands.info.AlertCommand;
@@ -42,15 +43,18 @@ public class VirtualGarden {
             commandRegistry.registerCommand(new HelpCommand(commandRegistry));
             commandRegistry.registerCommand(new InventoryCommand(gardenManager));
             commandRegistry.registerCommand(new AlertCommand(gardenManager.getAlertManager(), lineReader));
+            commandRegistry.registerCommand(new HarvestCommand(garden, lineReader, gardenManager));
 
             while (true) {
+                if (gardenManager.getAlertManager().hasAlerts()) {
+                    System.out.println("You have pending alerts! Use the 'alert' command to view them.");
+                }
                 String input = lineReader.readLine("Enter command (help): ");
                 String[] parts = input.split(" ");
                 Command cmd = commandRegistry.getCommand(parts[0]);
                 if (cmd != null) {
                     cmd.execute(Arrays.copyOfRange(parts, 1, parts.length));
-                }
-                else {
+                } else {
                     System.out.println("Unknown command. Try Again");
                 }
             }
