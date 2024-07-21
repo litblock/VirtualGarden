@@ -4,6 +4,7 @@ import com.thelitblock.virtualgarden.util.AlertManager;
 
 public class Vegetable extends Plant {
     private VegetableType vegetableType;
+    private boolean harvestable = false;
 
     public Vegetable(String name, VegetableType vegetableType, AlertManager alertManager) {
         super(PlantType.VEGETABLE, 1, alertManager);
@@ -19,9 +20,10 @@ public class Vegetable extends Plant {
     }
 
     public boolean isHarvestable() {
-        if (getGrowthStage().equals(GrowthStage.VEGETATIVE)) {
-            return true;
-        }
-        return false;
+        return harvestable;
+    }
+
+    public void setHarvestable(boolean harvestable) {
+        this.harvestable = harvestable;
     }
 }

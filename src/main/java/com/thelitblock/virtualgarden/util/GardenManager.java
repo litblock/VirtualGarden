@@ -62,10 +62,8 @@ public class GardenManager {
                         return GrowthStage.SPROUT;
                     case SPROUT:
                         return GrowthStage.MATURE;
-                    case MATURE:
+                    case MATURE, VEGETATIVE:
                         return GrowthStage.VEGETATIVE;
-                    case VEGETATIVE:
-                        return GrowthStage.DEAD;
                     default:
                         return currentStage; // No further growth after DEAD
                 }
@@ -170,17 +168,22 @@ public class GardenManager {
         Plant plant = garden.getPlot().getPlantAt(row, col);
         if (plant instanceof Vegetable) {
             Vegetable vegetable = (Vegetable) plant;
-            VegetableItemType vegetableItemType = vegetable.getVegetableType().getItemType();
-            if (vegetableItemType != null) {
-                Random random = new Random();
-                int quantity = 1 + random.nextInt(3);
-                InventoryItem item = new VegetableItem("6", vegetableItemType.name(), "vegetable", quantity, "vegetable", true);
-                inventory.addItem(item);
-                System.out.println("Harvested " + vegetableItemType.name() + " and added to inventory.");
+            if (vegetable.isHarvestable()) {
+                VegetableItemType vegetableItemType = vegetable.getVegetableType().getItemType();
+                if (vegetableItemType != null) {
+                    Random random = new Random();
+                    int quantity = 1 + random.nextInt(3);
+                    InventoryItem item = new VegetableItem("6", vegetableItemType.name(), "vegetable", quantity, "vegetable", true);
+                    inventory.addItem(item);
+                    System.out.println("Harvested " + vegetableItemType.name() + " and added to inventory.");
+                }
+                vegetable.setGrowthStage(GrowthStage.DEAD);
+                vegetable.setHarvestable(false);
+                garden.getPlot().removePlant(row, col);
+            } else {
+                System.out.println("The plant at " + row + "," + col + " is not harvestable yet.");
             }
-            garden.getPlot().removePlant(row, col);
-        }
-        else {
+        } else {
             System.out.println("No harvestable plant found at the specified location.");
         }
     }

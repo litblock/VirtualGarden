@@ -30,11 +30,13 @@ public class AlertCommand implements Command {
     public void execute(String[] args) {
         List<Alert> alerts = alertManager.getAlerts();
         if (alerts.isEmpty()) {
-            System.out.println("No alerts.");
-        } else {
+            System.out.println("Alerts all read");
+        }
+        else {
             for (Alert alert : alerts) {
                 System.out.println(alert.getMessage() + " - Timestamp: " + alert.getTimestamp());
             }
         }
+        alertManager.clearAlerts();
     }
 }

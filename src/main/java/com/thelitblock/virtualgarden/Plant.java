@@ -38,6 +38,12 @@ public class Plant {
             growthStage = GardenManager.getNextGrowthStage(growthStage, type);
             if (previousStage != growthStage) {
                 alertManager.addAlert("Alert: Plant " + type + " has grown from " + previousStage + " to " + growthStage);
+                if (growthStage == GrowthStage.VEGETATIVE && type == PlantType.VEGETABLE) {
+                    Plant plant = this;
+                    if (plant instanceof Vegetable) {
+                        ((Vegetable) plant).setHarvestable(true);
+                    }
+                }
                 if (growthStage != GrowthStage.DEAD) {
                     scheduleGrowthUpdate();
                 }

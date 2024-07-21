@@ -17,4 +17,8 @@ public class AlertManager {
     public boolean hasAlerts() {
         return !alerts.isEmpty();
     }
+
+    public void clearAlerts() {
+        alerts.clear();
+    }
 }
