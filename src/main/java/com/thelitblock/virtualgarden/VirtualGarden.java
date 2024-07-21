@@ -1,6 +1,8 @@
 package com.thelitblock.virtualgarden;
 
 import com.thelitblock.virtualgarden.commands.*;
+import com.thelitblock.virtualgarden.commands.gardening.PlantSeedCommand;
+import com.thelitblock.virtualgarden.commands.gardening.RemovePlantCommand;
 import com.thelitblock.virtualgarden.commands.info.AlertCommand;
 import com.thelitblock.virtualgarden.commands.info.DisplayCommand;
 import com.thelitblock.virtualgarden.commands.info.InventoryCommand;

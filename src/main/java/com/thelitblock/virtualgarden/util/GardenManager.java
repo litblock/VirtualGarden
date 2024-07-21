@@ -1,6 +1,7 @@
 package com.thelitblock.virtualgarden.util;
 
 import com.thelitblock.virtualgarden.*;
+import com.thelitblock.virtualgarden.items.HarvestableItem;
 import com.thelitblock.virtualgarden.items.InventoryItem;
 
 import java.util.ArrayList;
@@ -94,7 +95,7 @@ public class GardenManager {
                     break;
                 case VEGETABLE:
                     VegetableType vegetableType = VegetableType.valueOf(subTypeStr);
-                    plant = new Vegetable("Vegetable Name", vegetableType, 0, alertManager);
+                    plant = new Vegetable("Vegetable Name", vegetableType, alertManager);
                     break;
             }
         } catch (IllegalArgumentException e) {
@@ -152,5 +153,14 @@ public class GardenManager {
 
     public Map<String, InventoryItem> getInventoryItems() {
         return inventory.getAllItems();
+    }
+
+    public Garden getGarden() {
+        return garden;
+    }
+
+    public void harvestPlant(int row, int col) {
+        Plant plant = garden.getPlot().getPlantAt(row, col);
+        //get harvestable item through enum
     }
 }

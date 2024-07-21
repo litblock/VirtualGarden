@@ -1,6 +1,7 @@
-package com.thelitblock.virtualgarden.commands;
+package com.thelitblock.virtualgarden.commands.gardening;
 
 import com.thelitblock.virtualgarden.*;
+import com.thelitblock.virtualgarden.commands.Command;
 import com.thelitblock.virtualgarden.util.GardenManager;
 import org.jline.reader.LineReader;
 

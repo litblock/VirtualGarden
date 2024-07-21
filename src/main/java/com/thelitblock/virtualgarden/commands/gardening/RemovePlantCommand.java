@@ -1,6 +1,7 @@
-package com.thelitblock.virtualgarden.commands;
+package com.thelitblock.virtualgarden.commands.gardening;
 
 import com.thelitblock.virtualgarden.Garden;
+import com.thelitblock.virtualgarden.commands.Command;
 import org.jline.reader.LineReader;
 
 public class RemovePlantCommand implements Command {
