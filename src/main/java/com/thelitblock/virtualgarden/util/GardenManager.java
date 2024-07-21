@@ -3,10 +3,13 @@ package com.thelitblock.virtualgarden.util;
 import com.thelitblock.virtualgarden.*;
 import com.thelitblock.virtualgarden.items.HarvestableItem;
 import com.thelitblock.virtualgarden.items.InventoryItem;
+import com.thelitblock.virtualgarden.items.VegetableItem;
+import com.thelitblock.virtualgarden.items.VegetableItemType;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -147,6 +150,10 @@ public class GardenManager {
         return currency.getBalance();
     }
 
+    public Inventory getInventory() {
+        return inventory;
+    }
+
     public AlertManager getAlertManager() {
         return alertManager;
     }
@@ -161,6 +168,20 @@ public class GardenManager {
 
     public void harvestPlant(int row, int col) {
         Plant plant = garden.getPlot().getPlantAt(row, col);
-        //get harvestable item through enum
+        if (plant instanceof Vegetable) {
+            Vegetable vegetable = (Vegetable) plant;
+            VegetableItemType vegetableItemType = vegetable.getVegetableType().getItemType();
+            if (vegetableItemType != null) {
+                Random random = new Random();
+                int quantity = 1 + random.nextInt(3);
+                InventoryItem item = new VegetableItem("6", vegetableItemType.name(), "vegetable", quantity, "vegetable", true);
+                inventory.addItem(item);
+                System.out.println("Harvested " + vegetableItemType.name() + " and added to inventory.");
+            }
+            garden.getPlot().removePlant(row, col);
+        }
+        else {
+            System.out.println("No harvestable plant found at the specified location.");
+        }
     }
 }
