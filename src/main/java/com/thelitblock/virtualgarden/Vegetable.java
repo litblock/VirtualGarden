@@ -7,7 +7,7 @@ public class Vegetable extends Plant {
     private boolean harvestable = false;
 
     public Vegetable(String name, VegetableType vegetableType, AlertManager alertManager) {
-        super(PlantType.VEGETABLE, 1, alertManager);
+        super(PlantType.VEGETABLE, vegetableType.getGrowthFactor(), alertManager);
         this.vegetableType = vegetableType;
     }
 

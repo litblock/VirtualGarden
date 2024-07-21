@@ -10,39 +10,40 @@ public class Plant {
     protected PlantType type;
     private GrowthStage growthStage;
     protected boolean isHealthy;
-    private int growthFactor;
+    private double growthFactor;
     private AdjustableScheduler scheduler;
     private AlertManager alertManager;
 
 
-    public Plant(PlantType type, int growthFactor, AlertManager alertManager) {
+    public Plant(PlantType type, double growthFactor, AlertManager alertManager) {
         this.alertManager = alertManager;
         this.type = type;
         this.growthStage = GrowthStage.SEED;
         this.isHealthy = true;
         this.growthFactor = growthFactor;
-        this.scheduler = new AdjustableScheduler(growthFactor);
+        this.scheduler = new AdjustableScheduler(1);
         scheduleGrowthUpdate();
     }
 
     private void scheduleGrowthUpdate() {
         Runnable growthUpdateTask = this::triggerGrowthUpdate;
-        scheduler.scheduleTask(growthUpdateTask, growthFactor, TimeUnit.MINUTES);
+        scheduler.scheduleTask(growthUpdateTask, 20, TimeUnit.SECONDS);
     }
 
     public void triggerGrowthUpdate() {
         if (growthStage == GrowthStage.DEAD) {
             scheduler.cancel();
-        } else {
+        }
+        else {
             GrowthStage previousStage = this.growthStage;
-            growthStage = GardenManager.getNextGrowthStage(growthStage, type);
+            boolean shouldGrow = new java.util.Random().nextDouble() < calculateGrowthProbability();
+            if (shouldGrow) {
+                growthStage = GardenManager.getNextGrowthStage(growthStage, type);
+            }
             if (previousStage != growthStage) {
                 alertManager.addAlert("Alert: Plant " + type + " has grown from " + previousStage + " to " + growthStage);
                 if (growthStage == GrowthStage.VEGETATIVE && type == PlantType.VEGETABLE) {
-                    Plant plant = this;
-                    if (plant instanceof Vegetable) {
-                        ((Vegetable) plant).setHarvestable(true);
-                    }
+                    setHarvestableConditionally();
                 }
                 if (growthStage != GrowthStage.DEAD) {
                     scheduleGrowthUpdate();
@@ -78,4 +79,13 @@ public class Plant {
     public int getMaxGrowthStage() {
         return type.getMaxGrowthStage();
     }
+
+    private double calculateGrowthProbability() {
+        return 0.5 + (growthFactor / 100.0);
+    }
+    private void setHarvestableConditionally() {
+    if (this instanceof Vegetable) {
+        ((Vegetable) this).setHarvestable(true);
+    }
+}
 }
