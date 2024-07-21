@@ -4,7 +4,7 @@ public class ToolItem extends Item {
     private ToolType toolType;
 
     public ToolItem(String id, String name, String description, ToolType toolType, int quantity, boolean stackable) {
-        super(id, name, description, quantity, stackable);
+        super(ItemType.TOOLITEM, id, name, description, quantity, stackable);
         this.toolType = toolType;
     }
 

@@ -21,7 +21,6 @@ public enum ToolItemList {
         defaults.add(BASIC_WATERING_CAN.getToolItem());
         defaults.add(BASIC_SHOVEL.getToolItem());
         defaults.add(BASIC_TILLER.getToolItem());
-        defaults.add(BASIC_WATERING_CAN.getToolItem());
 
         ToolItem fertilizer = BASIC_FERTILIZER.getToolItem();
         fertilizer.setQuantity(5);

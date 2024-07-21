@@ -3,8 +3,8 @@ package com.thelitblock.virtualgarden.items;
 public class VegetableItem extends HarvestableItem {
     private String variety;
 
-    public VegetableItem(String id, String name, String description, int quantity, String variety) {
-        super(id, name, description, quantity);
+    public VegetableItem(String id, String name, String description, int quantity, String variety, boolean isStackable) {
+        super(HarvestableItemType.VEGETABLEITEM, id, name, description, quantity, isStackable);
         this.variety = variety;
     }
 

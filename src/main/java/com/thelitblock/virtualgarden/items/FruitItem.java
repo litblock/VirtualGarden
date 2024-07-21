@@ -2,9 +2,9 @@ package com.thelitblock.virtualgarden.items;
 
 public class FruitItem extends HarvestableItem {
     private String type;
-
-    public FruitItem(String id, String name, String description, int quantity, String type) {
-        super(id, name, description, quantity);
+    //create fruit item enum
+    public FruitItem(String id, String name, String description, int quantity, String type, boolean isStackable) {
+        super(HarvestableItemType.FRUITITEM, id, name, description, quantity, isStackable);
         this.type = type;
     }
 

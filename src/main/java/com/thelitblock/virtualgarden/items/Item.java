@@ -6,10 +6,12 @@ public abstract class Item implements InventoryItem, Stackable {
     private String id;
     private String name;
     private String description;
+    private ItemType itemType;
     private int quantity;
     private final boolean isStackable;
 
-    public Item(String id, String name, String description, int quantity, boolean isStackable) {
+    public Item(ItemType itemType, String id, String name, String description, int quantity, boolean isStackable) {
+        this.itemType = itemType;
         this.id = id;
         this.name = name;
         this.description = description;
