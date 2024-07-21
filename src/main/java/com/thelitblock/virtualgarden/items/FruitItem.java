@@ -18,7 +18,7 @@ public class FruitItem extends HarvestableItem {
 
     @Override
     public void harvest() {
-        System.out.println("Harvesting " + quantity + " of " + name + " (" + type + ")");
+        System.out.println("Harvesting " + quantity + " of " + getName() + " (" + type + ")");
         quantity--;
     }
 }

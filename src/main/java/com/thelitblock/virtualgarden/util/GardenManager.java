@@ -1,9 +1,11 @@
 package com.thelitblock.virtualgarden.util;
 
 import com.thelitblock.virtualgarden.*;
+import com.thelitblock.virtualgarden.items.InventoryItem;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -13,6 +15,7 @@ public class GardenManager {
     private Garden garden;
     private Currency currency;
     private AlertManager alertManager = new AlertManager();
+    private Inventory inventory = new Inventory();
 
     public GardenManager(Garden garden, int initialCurrency) {
         this.garden = garden;
@@ -145,5 +148,9 @@ public class GardenManager {
 
     public AlertManager getAlertManager() {
         return alertManager;
+    }
+
+    public Map<String, InventoryItem> getInventoryItems() {
+        return inventory.getAllItems();
     }
 }

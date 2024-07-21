@@ -3,8 +3,8 @@ package com.thelitblock.virtualgarden.items;
 public class ToolItem extends Item {
     private String toolType;
 
-    public ToolItem(String id, String name, String description, String toolType) {
-        super(id, name, description);
+    public ToolItem(String id, String name, String description, String toolType, int quantity, boolean stackable) {
+        super(id, name, description, quantity, stackable);
         this.toolType = toolType;
     }
 

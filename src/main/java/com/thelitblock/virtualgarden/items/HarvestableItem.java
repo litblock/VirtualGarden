@@ -4,7 +4,7 @@ public abstract class HarvestableItem extends Item {
     protected int quantity;
 
     public HarvestableItem(String id, String name, String description, int quantity) {
-        super(id, name, description);
+        super(id, name, description, quantity, true);
         this.quantity = quantity;
     }
 

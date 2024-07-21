@@ -2,15 +2,19 @@ package com.thelitblock.virtualgarden.items;
 
 import com.thelitblock.virtualgarden.items.InventoryItem;
 
-public abstract class Item implements InventoryItem {
+public abstract class Item implements InventoryItem, Stackable {
     private String id;
     private String name;
     private String description;
+    private int quantity;
+    private final boolean isStackable;
 
-    public Item(String id, String name, String description) {
+    public Item(String id, String name, String description, int quantity, boolean isStackable) {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.quantity = quantity;
+        this.isStackable = isStackable;
     }
 
     @Override
@@ -39,11 +43,46 @@ public abstract class Item implements InventoryItem {
     }
 
     @Override
+    public int getQuantity() {
+        if (isStackable) {
+            return quantity;
+        }
+        else {
+            return 1;
+        }
+    }
+
+    @Override
+    public void setQuantity(int quantity) {
+        if (isStackable) {
+            this.quantity = quantity;
+        }
+    }
+
+    @Override
+    public void increaseQuantity(int amount) {
+        if (isStackable) {
+            this.quantity += amount;
+        }
+    }
+
+    @Override
+    public void decreaseQuantity(int amount) {
+        if (isStackable) {
+            this.quantity = Math.max(0, this.quantity - amount);
+        }
+    }
+
+    @Override
     public String toString() {
         return "Item{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public boolean isStackable() {
+        return isStackable;
     }
 }
