@@ -1,9 +1,11 @@
 package com.thelitblock.virtualgarden.items;
 
-public abstract class Item {
-    protected String id;
-    protected String name;
-    protected String description;
+import com.thelitblock.virtualgarden.items.InventoryItem;
+
+public abstract class Item implements InventoryItem {
+    private String id;
+    private String name;
+    private String description;
 
     public Item(String id, String name, String description) {
         this.id = id;
@@ -11,6 +13,7 @@ public abstract class Item {
         this.description = description;
     }
 
+    @Override
     public String getId() {
         return id;
     }

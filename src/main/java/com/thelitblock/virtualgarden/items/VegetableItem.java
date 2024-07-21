@@ -18,7 +18,7 @@ public class VegetableItem extends HarvestableItem {
 
     @Override
     public void harvest() {
-        System.out.println("Harvesting " + quantity + " of " + name + " (" + variety + ")");
-        quantity--;
+        System.out.println("Harvesting " + getQuantity() + " of " + getName() + " (" + variety + ")");
+        setQuantity(getQuantity() - 1);
     }
 }
