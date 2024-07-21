@@ -1,18 +1,18 @@
 package com.thelitblock.virtualgarden.items;
 
 public class ToolItem extends Item {
-    private String toolType;
+    private ToolType toolType;
 
-    public ToolItem(String id, String name, String description, String toolType, int quantity, boolean stackable) {
+    public ToolItem(String id, String name, String description, ToolType toolType, int quantity, boolean stackable) {
         super(id, name, description, quantity, stackable);
         this.toolType = toolType;
     }
 
-    public String getToolType() {
+    public ToolType getToolType() {
         return toolType;
     }
 
-    public void setToolType(String toolType) {
+    public void setToolType(ToolType toolType) {
         this.toolType = toolType;
     }
 
