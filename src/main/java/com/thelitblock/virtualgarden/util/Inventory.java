@@ -31,10 +31,12 @@ public class Inventory {
                 if (items.containsKey(item.getId())) {
                     Item existingItem = (Item) items.get(item.getId());
                     existingItem.increaseQuantity(castedItem.getQuantity());
-                } else {
+                }
+                else {
                     items.put(item.getId(), item);
                 }
-            } else {
+            }
+            else {
                 String uniqueKey = item.getId() + "_" + System.nanoTime();
                 items.put(uniqueKey, item);
             }
@@ -47,7 +49,8 @@ public class Inventory {
         String json = gson.toJson(items);
         try (FileWriter writer = new FileWriter("src/main/resources/inventory.json")) {
             writer.write(json);
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             logger.error("Failed to save inventory to file", e);
         }
     }

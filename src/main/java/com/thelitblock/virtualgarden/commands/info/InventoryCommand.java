@@ -28,14 +28,16 @@ public class InventoryCommand implements Command {
         Map<String, InventoryItem> items = gardenManager.getInventoryItems();
         if (items.isEmpty()) {
             System.out.println("Your inventory is empty.");
-        } else {
+        }
+        else {
             System.out.println("Your inventory contains:");
             items.forEach((id, item) -> {
                 if (item instanceof Item) {
                     Item castedItem = (Item) item;
                     int quantity = castedItem.isStackable() ? castedItem.getQuantity() : 1;
                     System.out.println("- " + castedItem.getName() + " (Quantity: " + quantity + ")");
-                } else {
+                }
+                else {
                     System.out.println("- " + item.getName());
                 }
             });

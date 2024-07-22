@@ -49,7 +49,7 @@ public class VirtualGarden {
 
             while (true) {
                 if (gardenManager.getAlertManager().hasAlerts()) {
-                    System.out.println("You have pending alerts! Use the 'alert' command to view them.");
+                    System.out.println("You have pending alerts! Use the 'alerts' command to view them.");
                 }
                 String input = lineReader.readLine("Enter command (help): ");
                 String[] parts = input.split(" ");
