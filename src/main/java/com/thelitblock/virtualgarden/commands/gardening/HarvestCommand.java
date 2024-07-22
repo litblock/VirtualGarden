@@ -27,7 +27,7 @@ public class HarvestCommand implements Command {
         return "Harvests a plant from the garden based on its position";
     }
 
-    public void execute(String[] args) {
+    public void execute() {
         System.out.println("Please specify the row of the plant to harvest:");
         String rowInput = lineReader.readLine();
         int row = Integer.parseInt(rowInput);

@@ -27,7 +27,7 @@ public class AlertCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
         List<Alert> alerts = alertManager.getAlerts();
         if (alerts.isEmpty()) {
             System.out.println("Alerts all read");

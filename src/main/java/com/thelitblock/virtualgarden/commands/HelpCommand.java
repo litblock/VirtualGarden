@@ -20,7 +20,7 @@ public class HelpCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
         System.out.println("Available commands:");
         for (Map.Entry<String, Command> entry : commandRegistry.getCommands().entrySet()) {
             System.out.println(entry.getKey() + " - " + entry.getValue().getDescription());

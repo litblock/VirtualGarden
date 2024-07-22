@@ -1,11 +1,11 @@
-package com.thelitblock.virtualgarden.items;
+package com.thelitblock.virtualgarden.items.tools;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public enum ToolItemList {
-    BASIC_WATERING_CAN(new ToolItem("1", "Basic Watering Can", "A simple watering can", ToolType.WATERING, 1, false)),
-    DELUXE_WATERING_CAN(new ToolItem("2", "Deluxe Watering Can", "A deluxe watering can with extended range", ToolType.WATERING, 1, false)),
+    BASIC_WATERING_CAN(new WateringCanTool("1", "Basic Watering Can", "A simple watering can", ToolType.WATERING, 1, false, 10)),
+    DELUXE_WATERING_CAN(new WateringCanTool("2", "Deluxe Watering Can", "A deluxe watering can with extended range", ToolType.WATERING, 1, false, 20)),
     BASIC_TILLER(new ToolItem("3", "Basic Tiller", "A simple tiller", ToolType.TILLING, 1, false)),
     BASIC_SHOVEL(new ToolItem("4", "Basic Shovel", "A simple shovel", ToolType.DIGGING, 1, false)),
     BASIC_FERTILIZER(new ToolItem("5", "Basic Fertilizer", "A simple bag of fertilizer", ToolType.FERTILIZING, 1, true));
@@ -19,6 +19,7 @@ public enum ToolItemList {
     public static List<ToolItem> getDefaults() {
         List<ToolItem> defaults = new ArrayList<>();
         defaults.add(BASIC_WATERING_CAN.getToolItem());
+        defaults.add(DELUXE_WATERING_CAN.getToolItem());
         defaults.add(BASIC_SHOVEL.getToolItem());
         defaults.add(BASIC_TILLER.getToolItem());
 

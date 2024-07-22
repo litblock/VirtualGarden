@@ -1,4 +1,7 @@
-package com.thelitblock.virtualgarden.items;
+package com.thelitblock.virtualgarden.items.tools;
+
+import com.thelitblock.virtualgarden.items.Item;
+import com.thelitblock.virtualgarden.items.ItemType;
 
 public class ToolItem extends Item {
     private ToolType toolType;

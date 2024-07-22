@@ -1,4 +1,4 @@
-package com.thelitblock.virtualgarden.items;
+package com.thelitblock.virtualgarden.items.tools;
 
 public enum ToolType {
     WATERING,

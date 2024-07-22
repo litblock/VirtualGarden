@@ -13,7 +13,7 @@ public class ExitCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
         System.out.println("Exiting Virtual Garden...");
         System.exit(0);
     }

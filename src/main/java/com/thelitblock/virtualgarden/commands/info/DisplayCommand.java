@@ -24,10 +24,10 @@ public class DisplayCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
         String input;
         do {
-            displayPlot(); // Call displayPlot to show the garden layout
+            displayPlot();
 
             System.out.println("\nEnter 'exit' to return or 'refresh' to display again.");
             input = lineReader.readLine("> ").trim();
@@ -51,7 +51,8 @@ public class DisplayCommand implements Command {
                 if (plant != null) {
                     String symbol = getSymbolForPlantType(plant.getType());
                     System.out.print(symbol + "(" + plant.getGrowthStage().toString().charAt(0) + ")");
-                } else {
+                }
+                else {
                     System.out.print(".  ");
                 }
             }

@@ -24,20 +24,13 @@ public class RemovePlantCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
         String type;
         int row, col;
 
-        if (args.length < 4) {
-            type = lineReader.readLine("Enter plant type: ");
-            row = Integer.parseInt(lineReader.readLine("Enter row: "));
-            col = Integer.parseInt(lineReader.readLine("Enter column: "));
-        }
-        else {
-            type = args[1];
-            row = Integer.parseInt(args[2]);
-            col = Integer.parseInt(args[3]);
-        }
+        type = lineReader.readLine("Enter plant type: ");
+        row = Integer.parseInt(lineReader.readLine("Enter row: "));
+        col = Integer.parseInt(lineReader.readLine("Enter column: "));
 
         boolean success = garden.removePlant(type, row, col);
         if (success) {

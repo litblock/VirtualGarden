@@ -3,6 +3,8 @@ package com.thelitblock.virtualgarden.util;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.thelitblock.virtualgarden.items.*;
+import com.thelitblock.virtualgarden.items.tools.ToolItem;
+import com.thelitblock.virtualgarden.items.tools.ToolItemList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -65,5 +67,9 @@ public class Inventory {
 
     public Map<String, InventoryItem> getAllItems() {
         return new HashMap<>(items);
+    }
+
+    public ToolItem getTool(String tool) {
+        return (ToolItem) items.get(tool);
     }
 }

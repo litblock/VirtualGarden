@@ -28,12 +28,13 @@ public class PlantSeedCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
         String plantTypeInput = lineReader.readLine("Enter plant type (Flower, Tree, Vegetable): ");
         PlantType plantType;
         try {
             plantType = PlantType.valueOf(plantTypeInput.toUpperCase());
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e) {
             System.out.println("Error: Plant type " + plantTypeInput + " is not recognized.");
             return;
         }

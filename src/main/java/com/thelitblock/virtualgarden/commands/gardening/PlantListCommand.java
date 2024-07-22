@@ -20,7 +20,7 @@ public class PlantListCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter the type of plant you are interested in (e.g., 'vegetable'):");
         String plantTypeInput = scanner.nextLine().trim().toLowerCase();

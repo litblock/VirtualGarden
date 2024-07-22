@@ -24,7 +24,7 @@ public class InventoryCommand implements Command {
     }
 
     @Override
-    public void execute(String[] args) {
+    public void execute() {
         Map<String, InventoryItem> items = gardenManager.getInventoryItems();
         if (items.isEmpty()) {
             System.out.println("Your inventory is empty.");

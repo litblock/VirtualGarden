@@ -23,7 +23,7 @@ public class Plant {
         this.growthStage = GrowthStage.SEED;
         this.isHealthy = true;
         this.growthFactor = growthFactor;
-        this.waterFactor = 10.0;
+        this.waterFactor = 30;
         this.scheduler = new AdjustableScheduler(1);
         scheduleGrowthUpdate();
     }
@@ -41,7 +41,7 @@ public class Plant {
                 alertManager.addAlert("Alert: Plant " + type + " has died due to lack of water.");
                 return;
             }
-            waterFactor = Math.max(0, waterFactor - 2); //change maybe
+            waterFactor = Math.max(0, waterFactor - 1); //change maybe
             if (isDry()) {
                 turnsSinceWatering++;
             }
@@ -106,15 +106,17 @@ public class Plant {
     }
 
     //currently hardcoded water factor (eventually add to enum)
-    public void watering() {
-        double amountToAdd = 5;
-        if (waterFactor + amountToAdd > 10) {
-            waterFactor = 10;
+    public int watering(int water) {
+        int overflow = 0;
+        if (waterFactor + water > 30) {
+            overflow = (int) (waterFactor + water - 30);
+            waterFactor = 30;
         }
         else {
-            waterFactor += amountToAdd;
+            waterFactor += water;
         }
         turnsSinceWatering = 0;
-        System.out.println("Watering plant: " + type + " - Water level: " + waterFactor);
+        System.out.println("Watering plant: " + type + " - Water level: " + waterFactor + ". Overflow: " + overflow);
+        return overflow;
     }
 }

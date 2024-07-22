@@ -1,4 +1,15 @@
 {
+  "2_532590267705000": {
+    "waterLevel": 20,
+    "maxWaterLevel": 20,
+    "toolType": "WATERING",
+    "id": "2",
+    "name": "Deluxe Watering Can",
+    "description": "A deluxe watering can with extended range",
+    "itemType": "TOOLITEM",
+    "quantity": 1,
+    "isStackable": false
+  },
   "5": {
     "toolType": "FERTILIZING",
     "id": "5",
@@ -8,7 +19,18 @@
     "quantity": 5,
     "isStackable": true
   },
-  "3_528829424954800": {
+  "1_532590229968100": {
+    "waterLevel": 10,
+    "maxWaterLevel": 10,
+    "toolType": "WATERING",
+    "id": "1",
+    "name": "Basic Watering Can",
+    "description": "A simple watering can",
+    "itemType": "TOOLITEM",
+    "quantity": 1,
+    "isStackable": false
+  },
+  "3_532590270891600": {
     "toolType": "TILLING",
     "id": "3",
     "name": "Basic Tiller",
@@ -17,20 +39,11 @@
     "quantity": 1,
     "isStackable": false
   },
-  "4_528829423620900": {
+  "4_532590269043200": {
     "toolType": "DIGGING",
     "id": "4",
     "name": "Basic Shovel",
     "description": "A simple shovel",
-    "itemType": "TOOLITEM",
-    "quantity": 1,
-    "isStackable": false
-  },
-  "1_528829377915600": {
-    "toolType": "WATERING",
-    "id": "1",
-    "name": "Basic Watering Can",
-    "description": "A simple watering can",
     "itemType": "TOOLITEM",
     "quantity": 1,
     "isStackable": false
