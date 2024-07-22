@@ -4,12 +4,13 @@ import com.thelitblock.virtualgarden.*;
 import com.thelitblock.virtualgarden.commands.Command;
 import com.thelitblock.virtualgarden.util.GardenManager;
 import org.jline.reader.LineReader;
+import org.slf4j.Logger;
 
 public class PlantSeedCommand implements Command {
     private Garden garden;
     private LineReader lineReader;
     private GardenManager gardenManager;
-
+    private final Logger logger = org.slf4j.LoggerFactory.getLogger(PlantSeedCommand.class);
     public PlantSeedCommand(Garden garden, LineReader lineReader, GardenManager gardenManager) {
         this.garden = garden;
         this.lineReader = lineReader;
@@ -65,8 +66,16 @@ public class PlantSeedCommand implements Command {
             return;
         }
 
-        int row = Integer.parseInt(lineReader.readLine("Enter row: "));
-        int col = Integer.parseInt(lineReader.readLine("Enter column: "));
+        int row;
+        int col;
+        try {
+            row = Integer.parseInt(lineReader.readLine("Enter row: "));
+            col = Integer.parseInt(lineReader.readLine("Enter column: "));
+        }
+        catch (NumberFormatException e) {
+            logger.error("Error: Invalid row or column input.");
+            return;
+        }
 
         if (row < 0 || row >= garden.getPlot().getRows() || col < 0 || col >= garden.getPlot().getCols()) {
             System.out.println("Error: The specified coordinates are out of the garden's bounds.");

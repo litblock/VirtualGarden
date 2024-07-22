@@ -1,0 +1,38 @@
+{
+  "4_512322006957400": {
+    "toolType": "DIGGING",
+    "id": "4",
+    "name": "Basic Shovel",
+    "description": "A simple shovel",
+    "itemType": "TOOLITEM",
+    "quantity": 1,
+    "isStackable": false
+  },
+  "5": {
+    "toolType": "FERTILIZING",
+    "id": "5",
+    "name": "Basic Fertilizer",
+    "description": "A simple bag of fertilizer",
+    "itemType": "TOOLITEM",
+    "quantity": 5,
+    "isStackable": true
+  },
+  "1_512321968994700": {
+    "toolType": "WATERING",
+    "id": "1",
+    "name": "Basic Watering Can",
+    "description": "A simple watering can",
+    "itemType": "TOOLITEM",
+    "quantity": 1,
+    "isStackable": false
+  },
+  "3_512322008116700": {
+    "toolType": "TILLING",
+    "id": "3",
+    "name": "Basic Tiller",
+    "description": "A simple tiller",
+    "itemType": "TOOLITEM",
+    "quantity": 1,
+    "isStackable": false
+  }
+}
