@@ -1,5 +1,7 @@
 package com.thelitblock.virtualgarden.commands.gardening;
 
+import com.thelitblock.virtualgarden.FlowerType;
+import com.thelitblock.virtualgarden.TreeType;
 import com.thelitblock.virtualgarden.VegetableType;
 import com.thelitblock.virtualgarden.commands.Command;
 
@@ -28,10 +30,10 @@ public class PlantListCommand implements Command {
                 displayVegetableTypes();
                 break;
             case "flower":
-                System.out.println("Flower plants are not yet supported.");
+                displayFlowerTypes();
                 break;
             case "tree":
-                System.out.println("Fruit plants are not yet supported.");
+                displayTreeTypes();
                 break;
             default:
                 System.out.println("Unknown plant type.");
@@ -42,6 +44,24 @@ public class PlantListCommand implements Command {
     private void displayVegetableTypes() {
         System.out.println("Available Vegetable Plants:");
         for (VegetableType plant : VegetableType.values()) {
+            String plantInfo = String.format("%s - Cost: %d, Growth Factor: %.2f",
+                    plant.name(), plant.getCost(), plant.getGrowthFactor());
+            System.out.println(plantInfo);
+        }
+    }
+
+    private void displayFlowerTypes() {
+        System.out.println("Available Flower Plants:");
+        for (FlowerType plant : FlowerType.values()) {
+            String plantInfo = String.format("%s - Cost: %d, Growth Factor: %.2f",
+                    plant.name(), plant.getCost(), plant.getGrowthFactor());
+            System.out.println(plantInfo);
+        }
+    }
+
+    private void displayTreeTypes() {
+        System.out.println("Available Tree Plants:");
+        for (TreeType plant : TreeType.values()) {
             String plantInfo = String.format("%s - Cost: %d, Growth Factor: %.2f",
                     plant.name(), plant.getCost(), plant.getGrowthFactor());
             System.out.println(plantInfo);

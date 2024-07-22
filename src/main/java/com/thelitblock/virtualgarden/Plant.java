@@ -27,7 +27,7 @@ public class Plant {
 
     private void scheduleGrowthUpdate() {
         Runnable growthUpdateTask = this::triggerGrowthUpdate;
-        scheduler.scheduleTask(growthUpdateTask, 10, TimeUnit.SECONDS);
+        scheduler.scheduleTask(growthUpdateTask, 5, TimeUnit.SECONDS);
     }
 
     public void triggerGrowthUpdate() {

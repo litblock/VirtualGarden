@@ -2,6 +2,7 @@ package com.thelitblock.virtualgarden;
 
 import com.thelitblock.virtualgarden.commands.*;
 import com.thelitblock.virtualgarden.commands.gardening.HarvestCommand;
+import com.thelitblock.virtualgarden.commands.gardening.PlantListCommand;
 import com.thelitblock.virtualgarden.commands.gardening.PlantSeedCommand;
 import com.thelitblock.virtualgarden.commands.gardening.RemovePlantCommand;
 import com.thelitblock.virtualgarden.commands.info.AlertCommand;
@@ -44,6 +45,7 @@ public class VirtualGarden {
             commandRegistry.registerCommand(new InventoryCommand(gardenManager));
             commandRegistry.registerCommand(new AlertCommand(gardenManager.getAlertManager(), lineReader));
             commandRegistry.registerCommand(new HarvestCommand(garden, lineReader, gardenManager));
+            commandRegistry.registerCommand(new PlantListCommand());
 
             while (true) {
                 if (gardenManager.getAlertManager().hasAlerts()) {
@@ -54,7 +56,8 @@ public class VirtualGarden {
                 Command cmd = commandRegistry.getCommand(parts[0]);
                 if (cmd != null) {
                     cmd.execute(Arrays.copyOfRange(parts, 1, parts.length));
-                } else {
+                }
+                else {
                     System.out.println("Unknown command. Try Again");
                 }
             }
